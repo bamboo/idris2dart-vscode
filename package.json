@@ -1,0 +1,80 @@
+{
+  "name": "idris2dart",
+  "displayName": "idris2dart",
+  "description": "Tools to make your idris2dart experience more pleasant",
+  "license": "MIT",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bamboo/idris2dart-vscode"
+  },
+  "publisher": "bamboo",
+  "engines": {
+    "vscode": "^1.55.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onCommand:workbench.action.tasks.runTask"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "taskDefinitions": [
+			{
+				"type": "idris2dart",
+				"required": [
+					"task"
+				],
+				"properties": {
+					"task": {
+						"type": "string",
+						"description": "The idris2dart task to run"
+					},
+					"packageFile": {
+						"type": "string",
+						"description": "The Idris package file the task should use. Can be omitted."
+					}
+				}
+			}
+		],
+    "configuration": {
+			"type": "object",
+			"title": "Idris2Dart",
+			"properties": {
+				"idris2dart.path": {
+					"type": "string",
+					"default": "idris2dart",
+					"description": "Path to the idris2dart executable."
+				}
+			}
+		}
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "test-compile": "tsc -p ./",
+    "test-watch": "tsc -watch -p ./",
+    "pretest": "npm run test-compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.55.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.19.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.2.1",
+    "ts-loader": "^8.0.14",
+    "typescript": "^4.1.3",
+    "vscode-test": "^1.5.0",
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0"
+  }
+}
